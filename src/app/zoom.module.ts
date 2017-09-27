@@ -20,4 +20,4 @@ import {ZoomDirective} from './directive/zoom.directive';
   bootstrap: [AppComponent],
   exports: [ ZoomDirective ]
 })
-export class AppModule { }
+export class SmStZoomModule { }

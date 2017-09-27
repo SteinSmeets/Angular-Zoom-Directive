@@ -1,9 +1,9 @@
-import {Directive, ElementRef, HostListener, Input, OnInit, Renderer2, ViewChild} from '@angular/core';
+import {Directive, ElementRef, HostListener, Input, OnChanges, OnInit, Renderer2} from '@angular/core';
 
 @Directive({
-  selector: '[ng-zoom]'
+  selector: '[toiZoom]'
 })
-export class ZoomDirective implements OnInit {
+export class ZoomDirective implements OnInit, OnChanges {
 
   private zoomStep: number;
   private pinchStep: number;
@@ -19,6 +19,7 @@ export class ZoomDirective implements OnInit {
 
   @Input('minZoom')minZoom: number;
   @Input('maxZoom')maxZoom: number;
+  @Input('zoomTargetId') zoomTargetId: string;
 
   @HostListener('wheel', ['$event']) onWheel(event) {
     if (event.ctrlKey) {
@@ -54,6 +55,7 @@ export class ZoomDirective implements OnInit {
     this.previousZoom = 0;
     this.minZoom = 1;
     this.maxZoom = 2;
+    this.zoomTargetId = 'zoomTarget';
   }
 
   private getContainerRatios(): any {
@@ -82,8 +84,8 @@ export class ZoomDirective implements OnInit {
     };
 
     // Scroll to center
-    const scrollLeft = ((afterDif.right - prevDif.right) / this.maxZoom ) // * ratios.x;
-    const scrollTop = ((afterDif.bottom - prevDif.bottom) / this.maxZoom ) // * ratios.y;
+    const scrollLeft = ((afterDif.right - prevDif.right) / this.maxZoom ); // * ratios.x;
+    const scrollTop = ((afterDif.bottom - prevDif.bottom) / this.maxZoom ); // * ratios.y;
 
     this.elRef.nativeElement.scrollLeft += scrollLeft + this.getCenterDeviation(this.getTargetCenter(),
         zoomPoint, this.getContainerRatios(), zoomStep).x;
@@ -127,7 +129,13 @@ export class ZoomDirective implements OnInit {
   }
 
   ngOnInit() {
-    this.zoomTarget = document.getElementById('zoomTarget');
+    this.zoomTarget = document.getElementById(this.zoomTargetId);
+  }
+
+  ngOnChanges(changes) {
+    if (changes.zoomTargetId ) {
+      this.zoomTarget = document.getElementById(this.zoomTargetId);
+    }
   }
 }
 
