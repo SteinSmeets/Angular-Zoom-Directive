@@ -1,7 +1,9 @@
 {
-  "name": "ng2-zoom",
-  "version": "0.0.0",
+  "name": "toizoom",
+  "version": "0.0.1",
+  "author": "Stein Smeets",
   "license": "MIT",
+  "main": "src/main.ts",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -43,5 +45,18 @@
     "ts-node": "~2.0.0",
     "tslint": "~4.5.0",
     "typescript": "~2.2.0"
-  }
+  },
+  "description": "This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SteinSmeets/Angular-Zoom-Directive.git"
+  },
+  "keywords": [
+    "zoom",
+    "angular4"
+  ],
+  "bugs": {
+    "url": "https://github.com/SteinSmeets/Angular-Zoom-Directive/issues"
+  },
+  "homepage": "https://github.com/SteinSmeets/Angular-Zoom-Directive#readme"
 }

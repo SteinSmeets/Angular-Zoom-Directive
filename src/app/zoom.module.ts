@@ -17,6 +17,7 @@ import {ZoomDirective} from './directive/zoom.directive';
     HttpModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [ ZoomDirective ]
 })
 export class AppModule { }
